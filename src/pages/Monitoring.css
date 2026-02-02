@@ -1,0 +1,438 @@
+/* Monitoring Page Styles */
+
+.monitoring-page {
+    animation: fadeIn var(--transition-normal);
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.page-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-2);
+}
+
+.page-subtitle {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.time-range-selector {
+    display: flex;
+    background: var(--surface-primary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 2px;
+}
+
+.range-btn {
+    padding: var(--space-2) var(--space-3);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.range-btn:hover {
+    color: var(--text-primary);
+}
+
+.range-btn.active {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* Health Overview */
+.health-overview {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+}
+
+.health-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    transition: all var(--transition-fast);
+}
+
+.health-card:hover {
+    border-color: var(--border-default);
+    transform: translateY(-2px);
+}
+
+.health-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.health-icon.success {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--color-success-400);
+}
+
+.health-icon.primary {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--color-primary-400);
+}
+
+.health-icon.accent {
+    background: rgba(168, 85, 247, 0.15);
+    color: var(--color-accent-400);
+}
+
+.health-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+.health-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.health-value {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.health-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.health-trend {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+}
+
+.health-trend.positive {
+    color: var(--color-success-400);
+}
+
+/* Charts Grid */
+.charts-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+}
+
+.chart-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.chart-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: var(--space-5);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.chart-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.chart-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+}
+
+.chart-legend {
+    display: flex;
+    gap: var(--space-4);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+}
+
+.legend-dot.primary {
+    background: var(--color-primary-500);
+}
+
+.legend-dot.danger {
+    background: var(--color-danger-500);
+}
+
+.chart-body {
+    padding: var(--space-5);
+    padding-top: var(--space-3);
+}
+
+/* System Metrics */
+.metrics-grid {
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.system-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metric-name {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.metric-value {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.metric-progress {
+    height: 8px;
+    background: var(--surface-secondary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.metric-bar {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width var(--transition-slow);
+}
+
+.metric-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.metric-used,
+.metric-available {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+/* Alerts Section */
+.alerts-section {
+    margin-bottom: var(--space-8);
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-5);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.section-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.section-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+}
+
+.section-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.alert-stats {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.alert-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    background: var(--surface-secondary);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.alert-stat.critical.active {
+    background: rgba(244, 63, 94, 0.15);
+    color: var(--color-danger-400);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.alert-stat.warning.active {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--color-warning-400);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-muted);
+}
+
+.filter-group .select {
+    min-width: 160px;
+}
+
+.alerts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .health-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .health-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .health-card {
+        flex-wrap: wrap;
+    }
+
+    .health-trend {
+        width: 100%;
+        margin-top: var(--space-2);
+    }
+
+    .section-header {
+        flex-direction: column;
+    }
+
+    .section-actions {
+        width: 100%;
+    }
+
+    .alert-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .time-range-selector {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .range-btn {
+        flex: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}

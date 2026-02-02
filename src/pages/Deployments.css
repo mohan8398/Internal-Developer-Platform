@@ -1,0 +1,247 @@
+/* Deployments Page Styles */
+
+.deployments-page {
+    animation: fadeIn var(--transition-normal);
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--space-6);
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.page-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-2);
+}
+
+.page-subtitle {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--space-3);
+}
+
+/* Stats Bar */
+.deployment-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.stat-card-mini {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-fast);
+}
+
+.stat-card-mini:hover {
+    border-color: var(--border-default);
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon.total {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--color-primary-400);
+}
+
+.stat-icon.success {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--color-success-400);
+}
+
+.stat-icon.failed {
+    background: rgba(244, 63, 94, 0.15);
+    color: var(--color-danger-400);
+}
+
+.stat-icon.running {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--color-warning-400);
+}
+
+.stat-icon.running svg {
+    animation: spin 2s linear infinite;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-info .stat-value {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-info .stat-label {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-1);
+}
+
+/* Toolbar */
+.deployments-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.search-box {
+    position: relative;
+    min-width: 280px;
+}
+
+.search-box .search-icon {
+    position: absolute;
+    left: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.search-box .input {
+    padding-left: var(--space-10);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-muted);
+}
+
+.filter-group .select {
+    min-width: 140px;
+}
+
+/* Deployments List */
+.deployments-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: var(--space-16);
+    background: var(--bg-tertiary);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-xl);
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: var(--space-4);
+}
+
+.empty-state h3 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.empty-state p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .deployment-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .deployment-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .deployments-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .toolbar-left {
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        min-width: 0;
+        flex: 1;
+    }
+}
+
+@media (max-width: 640px) {
+    .header-actions {
+        width: 100%;
+    }
+
+    .header-actions .btn {
+        flex: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
