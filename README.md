@@ -1,10 +1,10 @@
-# 🌌 Internal Developer Platform (IDP)
+# Internal Developer Platform (IDP)
 
 Internal Developer Platform designed to streamline service provisioning, deployment orchestration, and infrastructure monitoring. Built with a focus on developer experience (DX) .
 
 ---
 
-## ✨ Features
+<!-- ## ✨ Features
 
 ### 🚀 Deployment Orchestration
 - **Deployment Wizard**: A multi-step workflow for launching services to Development, Staging, or Production.
@@ -26,7 +26,7 @@ Internal Developer Platform designed to streamline service provisioning, deploym
 - **Minimalist Design**: Clean, distracting-free header with a streamlined user profile and notification hub.
 - **Responsive Layout**: Fully optimized for various screen sizes with a collapsible sidebar.
 
----
+--- -->
 
 ## 🛠️ Technology Stack
 
