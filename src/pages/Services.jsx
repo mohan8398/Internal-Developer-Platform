@@ -107,18 +107,19 @@ function Services() {
                             <option value="warning">Warning</option>
                             <option value="critical">Critical</option>
                         </select>
+                        <select
+                            value={teamFilter}
+                            onChange={(e) => setTeamFilter(e.target.value)}
+                            className="input select"
+                        >
+                            <option value="all">All Teams</option>
+                            {teams.map(team => (
+                                <option key={team} value={team}>{team}</option>
+                            ))}
+                        </select>
                     </div>
 
-                    <select
-                        value={teamFilter}
-                        onChange={(e) => setTeamFilter(e.target.value)}
-                        className="input select"
-                    >
-                        <option value="all">All Teams</option>
-                        {teams.map(team => (
-                            <option key={team} value={team}>{team}</option>
-                        ))}
-                    </select>
+
                 </div>
 
                 <div className="toolbar-right">

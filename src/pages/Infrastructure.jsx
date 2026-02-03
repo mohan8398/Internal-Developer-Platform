@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Server,
     Database,
@@ -17,6 +18,7 @@ import { infrastructure, environments } from '../data/mockData';
 import './Infrastructure.css';
 
 function Infrastructure() {
+    const navigate = useNavigate();
     const [selectedEnv, setSelectedEnv] = useState('all');
 
     const getTypeIcon = (type) => {
@@ -49,7 +51,7 @@ function Infrastructure() {
                         <RefreshCw size={16} />
                         Sync Resources
                     </button>
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={() => navigate('/infrastructure/new')}>
                         <Plus size={16} />
                         Add Resource
                     </button>
