@@ -49,6 +49,18 @@
     z-index: 0;
 }
 
+/* Mobile Overlay */
+.mobile-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-overlay);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1029;
+    /* Just below sidebar (1030) */
+    animation: fadeIn var(--transition-fast);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .main-content {
@@ -78,15 +90,19 @@
     }
 }
 
+@media (min-width: 1025px) {
+    .mobile-overlay {
+        display: none;
+    }
+}
+
 /* Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }

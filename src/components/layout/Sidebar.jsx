@@ -42,6 +42,12 @@ const navigation = [
 function Sidebar({ collapsed, onToggle, mobileOpen, setMobileOpen }) {
     const location = useLocation();
 
+    const handleLinkClick = () => {
+        if (window.innerWidth <= 1024 && setMobileOpen) {
+            setMobileOpen(false);
+        }
+    };
+
     return (
         <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${mobileOpen ? 'mobile-open' : ''}`}>
             {/* Header */}
@@ -83,7 +89,7 @@ function Sidebar({ collapsed, onToggle, mobileOpen, setMobileOpen }) {
                                     title={collapsed ? item.name : undefined}
                                     onClick={() => setMobileOpen(false)}
                                 >
-                                    <Icon className="sidebar-link-icon" size={20} />
+                                    <Icon className="sidebar-link-icon" size={10} />
                                     {!collapsed && <span>{item.name}</span>}
                                     {isActive && <div className="sidebar-link-indicator" />}
                                 </NavLink>
@@ -95,12 +101,12 @@ function Sidebar({ collapsed, onToggle, mobileOpen, setMobileOpen }) {
 
             {/* Footer */}
             <div className="sidebar-footer">
-                <NavLink to="/notifications" className="sidebar-link" title={collapsed ? 'Notifications' : undefined}>
-                    <Bell size={20} />
+                <NavLink to="/notifications" className="sidebar-link" title={collapsed ? 'Notifications' : undefined} onClick={handleLinkClick}>
+                    <Bell size={10} />
                     {!collapsed && <span>Notifications</span>}
                     <span className="notification-badge">3</span>
                 </NavLink>
-                <NavLink to="/help" className="sidebar-link" title={collapsed ? 'Help & Docs' : undefined}>
+                <NavLink to="/help" className="sidebar-link" title={collapsed ? 'Help & Docs' : undefined} onClick={handleLinkClick}>
                     <HelpCircle size={20} />
                     {!collapsed && <span>Help & Docs</span>}
                 </NavLink>

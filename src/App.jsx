@@ -11,6 +11,7 @@ import Notifications from './pages/Notifications';
 import Profile from './pages/Profile';
 import NewDeployment from './pages/NewDeployment';
 import NewService from './pages/NewService';
+import NewResource from './pages/NewResource';
 import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
 import './modern.css';
@@ -32,6 +33,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="deployments/new" element={<NewDeployment />} />
             <Route path="services/new" element={<NewService />} />
+            <Route path="infrastructure/new" element={<NewResource />} />
           </Route>
         </Routes>
       </Router>

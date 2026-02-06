@@ -25,8 +25,9 @@ function Layout() {
         <div className="app-layout">
             <Sidebar
                 collapsed={sidebarCollapsed}
-                onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
                 mobileOpen={mobileMenuOpen}
+                onMobileClose={() => setMobileMenuOpen(false)}
+                onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
                 setMobileOpen={setMobileMenuOpen}
             />
 

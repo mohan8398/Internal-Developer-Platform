@@ -20,7 +20,7 @@
 
 /* Header */
 .sidebar-header {
-    padding: var(--space-4);
+    padding: var(--space-2);
     border-bottom: 1px solid var(--border-subtle);
     display: flex;
     align-items: center;
@@ -172,7 +172,7 @@
 
 /* Footer */
 .sidebar-footer {
-    padding: var(--space-4);
+    padding: var(--space-3);
     border-top: 1px solid var(--border-subtle);
 }
 
