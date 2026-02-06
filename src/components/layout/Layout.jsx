@@ -26,11 +26,20 @@ function Layout() {
             <Sidebar
                 collapsed={sidebarCollapsed}
                 onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+                mobileOpen={mobileMenuOpen}
+                setMobileOpen={setMobileMenuOpen}
             />
+
+            {mobileMenuOpen && (
+                <div
+                    className="mobile-overlay"
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+            )}
 
             <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
                 <Header
-                    onMenuClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    onMenuClick={() => setMobileMenuOpen(true)}
                     pageTitle={pageTitle}
                 />
 

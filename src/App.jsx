@@ -13,6 +13,7 @@ import NewDeployment from './pages/NewDeployment';
 import NewService from './pages/NewService';
 import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
+import './modern.css';
 
 function App() {
   return (

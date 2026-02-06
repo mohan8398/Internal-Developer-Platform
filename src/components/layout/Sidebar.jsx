@@ -39,11 +39,11 @@ const navigation = [
     }
 ];
 
-function Sidebar({ collapsed, onToggle }) {
+function Sidebar({ collapsed, onToggle, mobileOpen, setMobileOpen }) {
     const location = useLocation();
 
     return (
-        <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`}>
+        <aside className={`sidebar ${collapsed ? 'collapsed' : ''} ${mobileOpen ? 'mobile-open' : ''}`}>
             {/* Header */}
             <div className="sidebar-header">
                 <div className="sidebar-logo">
@@ -81,6 +81,7 @@ function Sidebar({ collapsed, onToggle }) {
                                     to={item.href}
                                     className={`sidebar-link ${isActive ? 'active' : ''}`}
                                     title={collapsed ? item.name : undefined}
+                                    onClick={() => setMobileOpen(false)}
                                 >
                                     <Icon className="sidebar-link-icon" size={20} />
                                     {!collapsed && <span>{item.name}</span>}

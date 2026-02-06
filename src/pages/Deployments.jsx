@@ -123,18 +123,18 @@ function Deployments() {
                             <option value="failed">Failed</option>
                             <option value="running">Running</option>
                         </select>
+                        <select
+                            value={envFilter}
+                            onChange={(e) => setEnvFilter(e.target.value)}
+                            className="input select"
+                        >
+                            <option value="all">All Environments</option>
+                            <option value="production">Production</option>
+                            <option value="staging">Staging</option>
+                            <option value="development">Development</option>
+                        </select>
                     </div>
 
-                    <select
-                        value={envFilter}
-                        onChange={(e) => setEnvFilter(e.target.value)}
-                        className="input select"
-                    >
-                        <option value="all">All Environments</option>
-                        <option value="production">Production</option>
-                        <option value="staging">Staging</option>
-                        <option value="development">Development</option>
-                    </select>
                 </div>
 
                 <button className="btn btn-ghost">
