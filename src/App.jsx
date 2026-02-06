@@ -14,6 +14,7 @@ import NewService from './pages/NewService';
 import NewResource from './pages/NewResource';
 import { ThemeProvider } from './context/ThemeContext';
 import './index.css';
+import './modern.css';
 
 function App() {
   return (

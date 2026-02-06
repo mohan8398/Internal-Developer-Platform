@@ -96,7 +96,7 @@ function Services() {
                     </div>
 
                     <div className="filter-group">
-                        <Filter size={16} />
+                        <Filter size={50} />
                         <select
                             value={statusFilter}
                             onChange={(e) => setStatusFilter(e.target.value)}
@@ -118,8 +118,6 @@ function Services() {
                             ))}
                         </select>
                     </div>
-
-
                 </div>
 
                 <div className="toolbar-right">

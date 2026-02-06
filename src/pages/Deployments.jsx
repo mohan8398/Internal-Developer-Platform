@@ -135,7 +135,6 @@ function Deployments() {
                         </select>
                     </div>
 
-
                 </div>
 
                 <button className="btn btn-ghost">
