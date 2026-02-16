@@ -29,8 +29,6 @@ function StatCard({ title, value, change, changeType, icon: Icon, iconColor, sub
                     <span className="change-label">vs last month</span>
                 </div>
             )}
-
-            <div className="stat-card-glow" />
         </div>
     );
 }

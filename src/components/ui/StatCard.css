@@ -133,7 +133,7 @@
     margin-left: var(--space-1);
 }
 
-.stat-card-glow {
+/* .stat-card-glow {
     position: absolute;
     bottom: -50%;
     right: -20%;
@@ -141,4 +141,4 @@
     height: 150px;
     background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
     pointer-events: none;
-}
+} */
