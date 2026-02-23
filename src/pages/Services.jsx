@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     Search,
@@ -9,7 +9,7 @@ import {
     RefreshCw
 } from 'lucide-react';
 import ServiceCard from '../components/ui/ServiceCard';
-import { services } from '../data/mockData';
+import { serviceApi } from '../services/serviceApi';
 import './Services.css';
 
 function Services() {
@@ -18,22 +18,46 @@ function Services() {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState('all');
     const [teamFilter, setTeamFilter] = useState('all');
+    const [servicesData, setServicesData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const filteredServices = services.filter(service => {
+    useEffect(() => {
+        fetchServices();
+    }, [statusFilter, teamFilter]);
+
+    const fetchServices = async () => {
+        setIsLoading(true);
+        try {
+            const filters = {};
+            if (statusFilter !== 'all') filters.lifecycle = statusFilter;
+            if (teamFilter !== 'all') filters.teamId = teamFilter;
+
+            const response = await serviceApi.getServices(filters);
+            // The API returns { data: Service[], total: number, page: number, limit: number }
+            setServicesData(response.data || []);
+            setError(null);
+        } catch (err) {
+            console.error('Failed to fetch services:', err);
+            setError('Failed to load services. Please check your connection to the backend.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const filteredServices = servicesData.filter(service => {
         const matchesSearch = service.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            service.description.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesStatus = statusFilter === 'all' || service.status === statusFilter;
-        const matchesTeam = teamFilter === 'all' || service.team === teamFilter;
-        return matchesSearch && matchesStatus && matchesTeam;
+            (service.description && service.description.toLowerCase().includes(searchQuery.toLowerCase()));
+        return matchesSearch;
     });
 
-    const teams = [...new Set(services.map(s => s.team))];
+    const teams = [...new Set(servicesData.map(s => s.teamId))];
 
     const serviceStats = {
-        total: services.length,
-        healthy: services.filter(s => s.status === 'healthy').length,
-        warning: services.filter(s => s.status === 'warning').length,
-        critical: services.filter(s => s.status === 'critical').length
+        total: servicesData.length,
+        healthy: servicesData.filter(s => s.active).length, // Simplified for now
+        warning: 0,
+        critical: servicesData.filter(s => !s.active).length
     };
 
     return (
@@ -140,7 +164,22 @@ function Services() {
 
             {/* Services Grid */}
             <div className={`services-container ${viewMode}`}>
-                {filteredServices.length > 0 ? (
+                {isLoading ? (
+                    <div className="loading-state">
+                        <div className="spinner" />
+                        <p>Loading services...</p>
+                    </div>
+                ) : error ? (
+                    <div className="error-state">
+                        <div className="error-icon">⚠️</div>
+                        <h3>Error Loading Services</h3>
+                        <p>{error}</p>
+                        <button className="btn btn-secondary" onClick={fetchServices}>
+                            <RefreshCw size={16} />
+                            Retry
+                        </button>
+                    </div>
+                ) : filteredServices.length > 0 ? (
                     filteredServices.map(service => (
                         <ServiceCard key={service.id} service={service} />
                     ))

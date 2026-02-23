@@ -16,12 +16,14 @@ import {
     Layout,
     Server
 } from 'lucide-react';
+import { serviceApi } from '../services/serviceApi';
 import './NewService.css';
 
 function NewService() {
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [isProvisioning, setIsProvisioning] = useState(false);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -36,14 +38,37 @@ function NewService() {
     const nextStep = () => setStep(step + 1);
     const prevStep = () => setStep(step - 1);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsProvisioning(true);
-        // Simulate provisioning process
-        setTimeout(() => {
-            setIsProvisioning(false);
+        setError(null);
+
+        try {
+            const serviceData = {
+                name: formData.name,
+                description: formData.description,
+                type: formData.template === 'frontend' ? 'frontend' : 'api',
+                lifecycle: 'experimental',
+                tier: 'medium',
+                teamId: formData.team.toLowerCase(),
+                repositoryUrl: `https://github.com/nkb-playtech/${formData.name}`,
+                createRepository: true,
+                tags: [formData.language, formData.template],
+                metadata: {
+                    visibility: formData.visibility,
+                    compute: formData.compute,
+                    database: formData.database
+                }
+            };
+
+            await serviceApi.createService(serviceData);
             navigate('/services');
-        }, 4000);
+        } catch (err) {
+            console.error('Failed to create service:', err);
+            setError(err.message || 'Failed to provision service. Please try again.');
+        } finally {
+            setIsProvisioning(false);
+        }
     };
 
     const templates = [
@@ -318,6 +343,13 @@ function NewService() {
                                         <span>Setup monitoring, logs, and dashboard</span>
                                     </div>
                                 </div>
+
+                                {error && (
+                                    <div className="summary-error animate-in">
+                                        <Shield size={16} />
+                                        <span>{error}</span>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="wizard-actions">

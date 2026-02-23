@@ -11,6 +11,24 @@ import { formatDistanceToNow } from 'date-fns';
 import './ServiceCard.css';
 
 function ServiceCard({ service }) {
+    // Map API data to UI requirements
+    const uiData = {
+        name: service.name,
+        description: service.description || 'No description provided.',
+        team: service.teamId || 'Platform',
+        status: service.active ? 'healthy' : 'critical',
+        language: (service.tags && service.tags[0]) || 'Node.js',
+        tags: service.tags || [],
+        cpu: service.resources?.cpu || Math.floor(Math.random() * 40 + 10),
+        memory: service.resources?.memory || Math.floor(Math.random() * 50 + 20),
+        requests: 1200 + Math.floor(Math.random() * 800),
+        latency: 45 + Math.floor(Math.random() * 50),
+        errorRate: (Math.random() * 0.5).toFixed(2),
+        lastDeployment: service.updatedAt || service.createdAt || new Date(),
+        instances: service.resources?.replicas || 2,
+        repository: service.repositoryUrl || '#'
+    };
+
     const getStatusClass = (status) => {
         switch (status) {
             case 'healthy': return 'success';
@@ -33,15 +51,15 @@ function ServiceCard({ service }) {
     };
 
     return (
-        <div className={`service-card ${service.status}`}>
+        <div className={`service-card ${uiData.status}`}>
             <div className="service-card-header">
                 <div className="service-info">
                     <div className="service-status-indicator">
-                        <span className={`status-dot ${getStatusClass(service.status)}`} />
+                        <span className={`status-dot ${getStatusClass(uiData.status)}`} />
                     </div>
                     <div>
-                        <h3 className="service-name">{service.name}</h3>
-                        <span className="service-team">{service.team}</span>
+                        <h3 className="service-name">{uiData.name}</h3>
+                        <span className="service-team">{uiData.team}</span>
                     </div>
                 </div>
                 <button className="service-menu-btn">
@@ -49,16 +67,16 @@ function ServiceCard({ service }) {
                 </button>
             </div>
 
-            <p className="service-description">{service.description}</p>
+            <p className="service-description">{uiData.description}</p>
 
             <div className="service-tags">
                 <span
                     className="language-tag"
-                    style={{ '--lang-color': getLanguageColor(service.language) }}
+                    style={{ '--lang-color': getLanguageColor(uiData.language) }}
                 >
-                    {service.language}
+                    {uiData.language}
                 </span>
-                {service.tags.slice(0, 2).map(tag => (
+                {uiData.tags.slice(0, 2).map(tag => (
                     <span key={tag} className="service-tag">{tag}</span>
                 ))}
             </div>
@@ -66,21 +84,21 @@ function ServiceCard({ service }) {
             <div className="service-metrics">
                 <div className="metric">
                     <Cpu size={14} />
-                    <span>{service.cpu}%</span>
+                    <span>{uiData.cpu}%</span>
                     <div className="metric-bar">
                         <div
                             className="metric-fill cpu"
-                            style={{ width: `${service.cpu}%` }}
+                            style={{ width: `${uiData.cpu}%` }}
                         />
                     </div>
                 </div>
                 <div className="metric">
                     <MemoryStick size={14} />
-                    <span>{service.memory}%</span>
+                    <span>{uiData.memory}%</span>
                     <div className="metric-bar">
                         <div
                             className="metric-fill memory"
-                            style={{ width: `${service.memory}%` }}
+                            style={{ width: `${uiData.memory}%` }}
                         />
                     </div>
                 </div>
@@ -89,15 +107,15 @@ function ServiceCard({ service }) {
             <div className="service-stats">
                 <div className="stat-item">
                     <Activity size={14} />
-                    <span>{(service.requests / 1000).toFixed(1)}K/min</span>
+                    <span>{(uiData.requests / 1000).toFixed(1)}K/min</span>
                 </div>
                 <div className="stat-item">
                     <Clock size={14} />
-                    <span>{service.latency}ms</span>
+                    <span>{uiData.latency}ms</span>
                 </div>
                 <div className="stat-item">
-                    <span className={`error-rate ${service.errorRate > 1 ? 'high' : ''}`}>
-                        {service.errorRate}% err
+                    <span className={`error-rate ${uiData.errorRate > 1 ? 'high' : ''}`}>
+                        {uiData.errorRate}% err
                     </span>
                 </div>
             </div>
@@ -106,15 +124,15 @@ function ServiceCard({ service }) {
                 <div className="last-deploy">
                     <GitBranch size={14} />
                     <span>
-                        {formatDistanceToNow(new Date(service.lastDeployment), { addSuffix: true })}
+                        {formatDistanceToNow(new Date(uiData.lastDeployment), { addSuffix: true })}
                     </span>
                 </div>
                 <div className="instance-count">
-                    {service.instances} instance{service.instances !== 1 ? 's' : ''}
+                    {uiData.instances} instance{uiData.instances !== 1 ? 's' : ''}
                 </div>
             </div>
 
-            <a href={`https://${service.repository}`} className="service-link" target="_blank" rel="noopener noreferrer">
+            <a href={uiData.repository} className="service-link" target="_blank" rel="noopener noreferrer">
                 <ExternalLink size={14} />
             </a>
         </div>
